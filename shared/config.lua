@@ -7,6 +7,9 @@ Config.Debug = false
 Config.TreasureMapItem = 'treasuremap'
 Config.DigItem = 'spade'
 
+-- Define your emote menu here - rpemotes or any other string to use scully_emotemenu
+Config.Emotes = 'rpemotes'
+
 -- Add as many location as you want here for it to randomly assign on map use
 Config.TreasureLocations = {
     Location1 = {

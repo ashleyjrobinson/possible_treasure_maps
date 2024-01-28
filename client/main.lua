@@ -18,7 +18,11 @@ end)
 
 RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem')
 AddEventHandler('possible-treasuremaps:client:UseTreasureItem', function()
-    exports["rpemotes"]:EmoteCommandStart("map2")
+    if Config.Emotes == 'rpemotes' then
+        exports["rpemotes"]:EmoteCommandStart("map2")
+    else 
+        exports.scully_emotemenu:playEmoteByCommand('map2')
+    end
     if lib.progressCircle({
         duration = 5000,
         label = 'Search for treasure..',
@@ -31,8 +35,12 @@ AddEventHandler('possible-treasuremaps:client:UseTreasureItem', function()
             mouse = false,
             combat = true
         }
-    }) then
-        exports["rpemotes"]:EmoteCancel(forceCancel)
+        }) then
+        if Config.Emotes == 'rpemotes' then
+            exports["rpemotes"]:EmoteCancel(forceCancel)
+        else
+            exports.scully_emotemenu:cancelEmote()
+        end
         TriggerServerEvent('possible-treasuremaps:server:UseTreasureItem')
     end
 end)
@@ -73,7 +81,11 @@ AddEventHandler('possible-treasuremaps:client:UseDigItem', function()
     local playerPed = PlayerPedId()
     local coords = GetEntityCoords(playerPed)
     if IsPlayerInsideAssignedLocation() and not hasDugAtLocation then
-        exports["rpemotes"]:EmoteCommandStart("dig")
+        if Config.Emotes == 'rpemotes' then
+            exports["rpemotes"]:EmoteCommandStart("dig")
+        else 
+            exports.scully_emotemenu:playEmoteByCommand('dig')
+        end
         if lib.progressCircle({
             duration = 5000,
             label = 'Digging for treasure..',
@@ -86,8 +98,12 @@ AddEventHandler('possible-treasuremaps:client:UseDigItem', function()
                 mouse = false,
                 combat = true
             }
-        }) then 
-            exports["rpemotes"]:EmoteCancel(forceCancel)
+            }) then
+            if Config.Emotes == 'rpemotes' then
+                exports["rpemotes"]:EmoteCancel(forceCancel)
+            else
+                exports.scully_emotemenu:cancelEmote()
+            end
             
             local randomType = math.random(1, 10) 
             local lootTableType
