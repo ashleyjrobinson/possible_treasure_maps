@@ -2,7 +2,7 @@
 #### A basic treasure map system for your server. It allows you to add Treasure maps items to your loot tables and players can then embark on a journey of going to find the loot area and potentially get rewarding items.
 
 
-[Preview](https://www.youtube.com/watch?v=f_rKE9o01IQ) //
+[Preview](https://www.youtube.com/watch?v=WrBC0I1SWgs) //
 [Discord/ Support](https://discord.gg/Gnb2S7uAdG)
 
 ## Install:
