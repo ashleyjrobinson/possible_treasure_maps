@@ -84,17 +84,14 @@ Config.RareLootTables = {
     }
 }
 
--- Notification positon
+-- Notifications
 Config.NotifPosition = "top"
+Config.NotifIcon = "fa-solid fa-map"
 
--- Notifcation message for client to indicate blip on navigation
-Config.TreasureLocationNotifTitle = "X marks the spot"
-Config.TreasureLocationNotifMessage = "A location has been added to your navigation."
+-- Progress Bar
+Config.ProgressPosition = "bottom"
+Config.MapDuration = 5000
+Config.DigDuration = 5000
 
--- Notification messages for client after already dug
-Config.AlreadyDugNotifTitle = "Already dug"
-Config.AlreadyDugNotifMessage = "You have already found your treasure."
-
--- Notification messages for client not in zone
-Config.KeepSearchingNotifTitle = "Keep searching"
-Config.KeepSearchingNotifMessage = "You are not at the marked location."
+-- Blip Name
+Config.BlipName = "Treasure Location"

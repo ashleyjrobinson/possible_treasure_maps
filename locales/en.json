@@ -1,0 +1,11 @@
+{
+    "treasure_searching": "Searching for treasure...",
+    "treasure_digging": "Digging for treasure...",
+    "x_marks_the_spot_title": "X marks the spot!",
+    "x_marks_the_spot_message": "A location has been added to your navigation.",
+    "keep_searching_notification_title": "Keep Searching",
+    "keep_searching_notification_message": "You need to be inside the assigned location to dig.",
+    "already_dug_notification_title": "Already Dug",
+    "already_dug_notification_message": "You've already dug at this location."
+}
+  

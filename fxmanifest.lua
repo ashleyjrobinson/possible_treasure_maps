@@ -22,3 +22,7 @@ client_scripts {
 server_scripts {
     'server/*'
 }
+
+files {
+    'locales/*.json'
+}

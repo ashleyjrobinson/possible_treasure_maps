@@ -1,3 +1,4 @@
+lib.locale()
 local currentLocationCoords = nil
 local currentLocationBlip = nil 
 local hasDugAtLocation = false 
@@ -26,11 +27,11 @@ RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function()
         exports.scully_emotemenu:playEmoteByCommand('map2')
     end
     if lib.progressCircle({
-        duration = 5000,
-        label = 'Search for treasure..',
+        duration = Config.MapDuration,
+        label = locale('treasure_searching'),
         useWhileDead = false,
         canCancel = true,
-        position = 'bottom',
+        position = Config.ProgressPosition,
         disable = {
             move = false,
             car = false,
@@ -56,16 +57,16 @@ RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function(coords
         SetBlipColour(currentLocationBlip, 1)
         SetBlipScale(currentLocationBlip, 0.5)
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentString('Treasure Location')
+        AddTextComponentString(Config.BlipName)
         EndTextCommandSetBlipName(currentLocationBlip)
         hasDugAtLocation = false
 
         lib.notify{
-            title = Config.TreasureLocationNotifTitle,
-            description = Config.TreasureLocationNotifMessage,
+            title = locale('x_marks_the_spot_title'),
+            description = locale('x_marks_the_spot_message'),
             type = 'info',
             position = Config.NotifPosition,
-            icon = 'fa-solid fa-map'
+            icon = Config.NotifIcon
         }
     end
 end)
@@ -89,11 +90,11 @@ RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
             exports.scully_emotemenu:playEmoteByCommand('dig')
         end
         if lib.progressCircle({
-            duration = 5000,
-            label = 'Digging for treasure..',
+            duration = Config.DigDuration,
+            label = locale('treasure_digging'),
             useWhileDead = false,
             canCancel = true,
-            position = 'bottom',
+            position = Config.ProgressPosition,
             disable = {
                 move = false,
                 car = false,
@@ -129,19 +130,19 @@ RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
         end
     elseif hasDugAtLocation then
         lib.notify {
-            title = Config.AlreadyDugNotifTitle,
-            description = Config.AlreadyDugNotifMessage,
+            title = locale('already_dug_notification_title'),
+            description = locale('already_dug_notification_message'),
             type = 'error',
             position = Config.NotifPosition,
-            icon = 'fa-solid fa-map'
+            icon = Config.NotifIcon
         }
     else
         lib.notify {
-            title = Config.KeepSearchingNotifTitle,
-            description = Config.KeepSearchingNotifMessage,
+            title = locale('keep_searching_notification_title'),
+            description = locale('keep_searching_notification_message'),
             type = 'error',
             position = Config.NotifPosition,
-            icon = 'fa-solid fa-map'
+            icon = Config.NotifIcon
         }
     end
 end)
