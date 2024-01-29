@@ -9,8 +9,7 @@ QBCore.Functions.CreateUseableItem(Config.DigItem, function(source)
     TriggerClientEvent('possible-treasuremaps:client:UseDigItem', source)
 end)
 
-RegisterNetEvent('possible-treasuremaps:server:UseTreasureItem')
-AddEventHandler('possible-treasuremaps:server:UseTreasureItem', function()
+RegisterNetEvent('possible-treasuremaps:server:UseTreasureItem', function()
     local src = source
     local player = QBCore.Functions.GetPlayer(src)
 
@@ -41,8 +40,7 @@ AddEventHandler('possible-treasuremaps:server:UseTreasureItem', function()
     end
 end)
 
-RegisterNetEvent('possible-treasuremaps:server:GiveDigReward')
-AddEventHandler('possible-treasuremaps:server:GiveDigReward', function(lootTableType)
+RegisterNetEvent('possible-treasuremaps:server:GiveDigReward', function(lootTableType)
     local src = source
     local player = QBCore.Functions.GetPlayer(src)
 
@@ -66,5 +64,4 @@ AddEventHandler('possible-treasuremaps:server:GiveDigReward', function(lootTable
     for _, item in pairs(selectedTable) do
         ox_inventory:AddItem(src, item, 1)
     end
-
 end)

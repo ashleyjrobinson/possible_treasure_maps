@@ -16,8 +16,7 @@ CreateThread(function()
     end
 end)
 
-RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem')
-AddEventHandler('possible-treasuremaps:client:UseTreasureItem', function()
+RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function()
     currentLocationCoords = nil
     hasDugAtLocation = false
     
@@ -48,8 +47,7 @@ AddEventHandler('possible-treasuremaps:client:UseTreasureItem', function()
     end
 end)
 
-RegisterNetEvent('possible-treasuremaps:client:MarkTreasureLocation')
-AddEventHandler('possible-treasuremaps:client:MarkTreasureLocation', function(coords)
+RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function(coords)
     if currentLocationCoords == nil then
         currentLocationCoords = coords
 
@@ -81,9 +79,7 @@ local function IsPlayerInsideAssignedLocation()
     return false
 end
 
-
-RegisterNetEvent('possible-treasuremaps:client:UseDigItem')
-AddEventHandler('possible-treasuremaps:client:UseDigItem', function()
+RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
     local playerPed = PlayerPedId()
     local coords = GetEntityCoords(playerPed)
     if IsPlayerInsideAssignedLocation() and not hasDugAtLocation then
