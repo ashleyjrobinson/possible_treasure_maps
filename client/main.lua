@@ -18,6 +18,9 @@ end)
 
 RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem')
 AddEventHandler('possible-treasuremaps:client:UseTreasureItem', function()
+    currentLocationCoords = nil
+    hasDugAtLocation = false
+    
     if Config.Emotes == 'rpemotes' then
         exports["rpemotes"]:EmoteCommandStart("map2")
     else 
@@ -47,24 +50,26 @@ end)
 
 RegisterNetEvent('possible-treasuremaps:client:MarkTreasureLocation')
 AddEventHandler('possible-treasuremaps:client:MarkTreasureLocation', function(coords)
-    currentLocationCoords = coords
+    if currentLocationCoords == nil then
+        currentLocationCoords = coords
 
-    currentLocationBlip = AddBlipForCoord(coords.x, coords.y, coords.z)
-    SetBlipSprite(currentLocationBlip, 112) 
-    SetBlipColour(currentLocationBlip, 1)
-    SetBlipScale(currentLocationBlip, 0.5)
-    BeginTextCommandSetBlipName('STRING')
-	AddTextComponentString('Treasure Location')
-	EndTextCommandSetBlipName(currentLocationBlip)
-    hasDugAtLocation = false
+        currentLocationBlip = AddBlipForCoord(coords.x, coords.y, coords.z)
+        SetBlipSprite(currentLocationBlip, 112) 
+        SetBlipColour(currentLocationBlip, 1)
+        SetBlipScale(currentLocationBlip, 0.5)
+        BeginTextCommandSetBlipName('STRING')
+        AddTextComponentString('Treasure Location')
+        EndTextCommandSetBlipName(currentLocationBlip)
+        hasDugAtLocation = false
 
-    lib.notify{
-        title = Config.TreasureLocationNotifTitle,
-        description = Config.TreasureLocationNotifMessage,
-        type = 'info',
-        position = Config.NotifPosition,
-        icon = 'fa-solid fa-map'
-    }
+        lib.notify{
+            title = Config.TreasureLocationNotifTitle,
+            description = Config.TreasureLocationNotifMessage,
+            type = 'info',
+            position = Config.NotifPosition,
+            icon = 'fa-solid fa-map'
+        }
+    end
 end)
 
 local function IsPlayerInsideAssignedLocation()
@@ -75,6 +80,7 @@ local function IsPlayerInsideAssignedLocation()
     end
     return false
 end
+
 
 RegisterNetEvent('possible-treasuremaps:client:UseDigItem')
 AddEventHandler('possible-treasuremaps:client:UseDigItem', function()

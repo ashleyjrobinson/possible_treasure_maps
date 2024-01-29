@@ -1,4 +1,4 @@
-local inventory = exports.ox_inventory
+local ox_inventory = exports.ox_inventory
 local QBCore = exports['qb-core']:GetCoreObject()
 
 QBCore.Functions.CreateUseableItem(Config.TreasureMapItem, function(source)
@@ -9,25 +9,20 @@ QBCore.Functions.CreateUseableItem(Config.DigItem, function(source)
     TriggerClientEvent('possible-treasuremaps:client:UseDigItem', source)
 end)
 
-RegisterNetEvent('possible-treasuremaps:server:MarkTreasureZone')
-AddEventHandler('possible-treasuremaps:server:MarkTreasureZone', function(playerId, zoneName)
-    TriggerClientEvent('possible-treasuremaps:client:MarkTreasureZone', playerId, zoneName)
-end)
-
 RegisterNetEvent('possible-treasuremaps:server:UseTreasureItem')
 AddEventHandler('possible-treasuremaps:server:UseTreasureItem', function()
     local src = source
-	local player = QBCore.Functions.GetPlayer(src)
+    local player = QBCore.Functions.GetPlayer(src)
 
-    if not inventory then
+    if not ox_inventory then
         print("Error: You need ox_invetory to use this resource.")
         return
     end
 
-    local success = inventory:RemoveItem(src, Config.TreasureMapItem, 1)
+    local success = ox_inventory:RemoveItem(src, Config.TreasureMapItem, 1)
 
     if success then
-    local locationNames = {}
+        local locationNames = {}
         for locationName, _ in pairs(Config.TreasureLocations) do
             table.insert(locationNames, locationName)
         end
@@ -40,17 +35,16 @@ AddEventHandler('possible-treasuremaps:server:UseTreasureItem', function()
             print("Selected location coordinates:", coords)
         end 
     
-        TriggerClientEvent('possible-treasuremaps:client:MarkTreasureLocation', -1, coords, randomLocationName)
+        TriggerClientEvent('possible-treasuremaps:client:MarkTreasureLocation', src, coords, randomLocationName)
     else
         print("Error: Failed to remove item from inventory.")
     end
 end)
 
-
 RegisterNetEvent('possible-treasuremaps:server:GiveDigReward')
 AddEventHandler('possible-treasuremaps:server:GiveDigReward', function(lootTableType)
     local src = source
-	local player = QBCore.Functions.GetPlayer(src)
+    local player = QBCore.Functions.GetPlayer(src)
 
     local lootTable
 
@@ -70,10 +64,7 @@ AddEventHandler('possible-treasuremaps:server:GiveDigReward', function(lootTable
     local selectedTable = lootTable[selectedTableName]
 
     for _, item in pairs(selectedTable) do
-        exports.ox_inventory:AddItem(src, item, 1)
+        ox_inventory:AddItem(src, item, 1)
     end
 
 end)
-
-
-
