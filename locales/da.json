@@ -1,0 +1,10 @@
+{
+"treasure_searching": "Søger efter skat...",
+"treasure_digging": "Graver efter skat...",
+"x_marks_the_spot_title": "X markerer stedet!",
+"x_marks_the_spot_message": "Et sted er blevet tilføjet til din navigation.",
+"keep_searching_notification_title": "Fortsæt søgningen",
+"keep_searching_notification_message": "Du skal befinde dig inden for det tildelte område for at grave.",
+"already_dug_notification_title": "Allerede gravet",
+"already_dug_notification_message": "Du har allerede gravet på dette sted."
+}
