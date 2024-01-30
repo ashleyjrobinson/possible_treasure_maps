@@ -27,8 +27,8 @@ RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function()
         exports.scully_emotemenu:playEmoteByCommand('map2')
     end
     if lib.progressCircle({
-        duration = Config.MapDuration,
         label = locale('treasure_searching'),
+        duration = Config.MapDuration,
         useWhileDead = false,
         canCancel = true,
         position = Config.ProgressPosition,
@@ -48,7 +48,7 @@ RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function()
     end
 end)
 
-RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function(coords)
+RegisterNetEvent('possible-treasuremaps:client:MarkTreasureLocation', function(coords)
     if currentLocationCoords == nil then
         currentLocationCoords = coords
 
@@ -90,8 +90,8 @@ RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
             exports.scully_emotemenu:playEmoteByCommand('dig')
         end
         if lib.progressCircle({
-            duration = Config.DigDuration,
             label = locale('treasure_digging'),
+            duration = Config.DigDuration,
             useWhileDead = false,
             canCancel = true,
             position = Config.ProgressPosition,
