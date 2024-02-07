@@ -3,7 +3,8 @@ return {
     Framework = "qb", --"qb" for qbx/ qb, "esx" for esx
     TreasureMapItem = 'treasuremap',
     DigItem = 'spade',
-    Emotes = 'rpemotes',
+    Emotes = 'rpemotes', -- "rpemotes" for rpemotes, anything else for scully_emotemenu
+    -- Define the treasure locations here (add as many as you like)
     TreasureLocations = {
         Location1 = {
             coords = vector3(493.4, 1439.34, 351.75),
@@ -26,6 +27,7 @@ return {
             radius = 2,
         },
     },
+    -- Define common loot tabls here, if the player hits the common table, they will rewarded all of one of these tables
     CommonLootTables = {
         CommonLoot1 = {
             Item1 = 'phone',
@@ -49,6 +51,7 @@ return {
             Item5 = 'baggy',
         }
     },
+    -- Define rare loot tabls here, if the player hits the rare table, they will rewarded all of one of these tables
     RareLootTables = {
         RareLoot1 = {
             Item1 = 'treasuremap',
