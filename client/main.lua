@@ -3,7 +3,7 @@ lib.locale()
 
 local currentLocationCoords = nil
 local currentLocationBlip = nil 
-local hasDugAtLocation = false 
+local hasDugAtLocation = false
 
 CreateThread(function()
     for locationName, locationData in pairs(config.TreasureLocations) do

@@ -1,14 +1,29 @@
 local config = require('shared.config')
 local ox_inventory = exports.ox_inventory
-local QBCore = exports['qb-core']:GetCoreObject()
 
-QBCore.Functions.CreateUseableItem(config.TreasureMapItem, function(source)
-    TriggerClientEvent('possible-treasuremaps:client:UseTreasureItem', source)
-end)
+if config.Framework == "qb" then
+    QBCore = exports["qb-core"]:GetCoreObject()
+elseif config.Framework == "esx" then
+    ESX = exports["es_extended"]:getSharedObject()
+end
 
-QBCore.Functions.CreateUseableItem(config.DigItem, function(source)
-    TriggerClientEvent('possible-treasuremaps:client:UseDigItem', source)
-end)
+if config.Framework == "qb" then
+    QBCore.Functions.CreateUseableItem(config.TreasureMapItem, function(source)
+        TriggerClientEvent('possible-treasuremaps:client:UseTreasureItem', source)
+    end)
+
+    QBCore.Functions.CreateUseableItem(config.DigItem, function(source)
+        TriggerClientEvent('possible-treasuremaps:client:UseDigItem', source)
+    end)
+elseif config.Framework == "esx" then
+    ESX.RegisterUsableItem(config.TreasureMapItem, function(source)
+        TriggerClientEvent('possible-treasuremaps:client:UseTreasureItem', source)
+    end)
+
+    ESX.RegisterUsableItem(config.DigItem, function(source)
+        TriggerClientEvent('possible-treasuremaps:client:UseDigItem', source)
+    end)
+end
 
 RegisterNetEvent('possible-treasuremaps:server:UseTreasureItem', function()
     local src = source
@@ -61,7 +76,7 @@ RegisterNetEvent('possible-treasuremaps:server:GiveDigReward', function(lootTabl
     local selectedTable = lootTable[selectedTableName]
 
     for _, item in pairs(selectedTable) do
-        if ox_inventory:canCarryItem(src, item, 1) then
+        if ox_inventory:CanCarryItem(src, item, 1) then
         ox_inventory:AddItem(src, item, 1)
         else
             print("Error: Inventory is full.")

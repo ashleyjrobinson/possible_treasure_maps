@@ -1,5 +1,6 @@
 return {
     Debug = false,
+    Framework = "qb", --"qb" for qbx/ qb, "esx" for esx
     TreasureMapItem = 'treasuremap',
     DigItem = 'spade',
     Emotes = 'rpemotes',
