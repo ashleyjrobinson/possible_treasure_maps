@@ -12,7 +12,6 @@ end)
 
 RegisterNetEvent('possible-treasuremaps:server:UseTreasureItem', function()
     local src = source
-    local player = QBCore.Functions.GetPlayer(src)
 
     if not ox_inventory then
         print("Error: You need ox_invetory to use this resource.")
@@ -43,7 +42,6 @@ end)
 
 RegisterNetEvent('possible-treasuremaps:server:GiveDigReward', function(lootTableType)
     local src = source
-    local player = QBCore.Functions.GetPlayer(src)
 
     local lootTable
 
@@ -63,6 +61,10 @@ RegisterNetEvent('possible-treasuremaps:server:GiveDigReward', function(lootTabl
     local selectedTable = lootTable[selectedTableName]
 
     for _, item in pairs(selectedTable) do
+        if ox_inventory:canCarryItem(src, item, 1) then
         ox_inventory:AddItem(src, item, 1)
+        else
+            print("Error: Inventory is full.")
+        end
     end
 end)
