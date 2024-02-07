@@ -1,10 +1,12 @@
+local config = require('shared.config')
 lib.locale()
+
 local currentLocationCoords = nil
 local currentLocationBlip = nil 
 local hasDugAtLocation = false 
 
 CreateThread(function()
-    for locationName, locationData in pairs(Config.TreasureLocations) do
+    for locationName, locationData in pairs(config.TreasureLocations) do
         local coords = locationData.coords
         local radius = locationData.radius
 
@@ -12,7 +14,7 @@ CreateThread(function()
             name = locationName,
             coords = coords,
             radius = radius,
-            debug = Config.Debug
+            debug = config.Debug
         })
     end
 end)
@@ -21,17 +23,17 @@ RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function()
     currentLocationCoords = nil
     hasDugAtLocation = false
     
-    if Config.Emotes == 'rpemotes' then
+    if config.Emotes == 'rpemotes' then
         exports["rpemotes"]:EmoteCommandStart("map2")
     else 
         exports.scully_emotemenu:playEmoteByCommand('map2')
     end
     if lib.progressCircle({
         label = locale('treasure_searching'),
-        duration = Config.MapDuration,
+        duration = config.MapDuration,
         useWhileDead = false,
         canCancel = true,
-        position = Config.ProgressPosition,
+        position = config.ProgressPosition,
         disable = {
             move = false,
             car = false,
@@ -39,7 +41,7 @@ RegisterNetEvent('possible-treasuremaps:client:UseTreasureItem', function()
             combat = true
         }
         }) then
-        if Config.Emotes == 'rpemotes' then
+        if config.Emotes == 'rpemotes' then
             exports["rpemotes"]:EmoteCancel(forceCancel)
         else
             exports.scully_emotemenu:cancelEmote()
@@ -57,7 +59,7 @@ RegisterNetEvent('possible-treasuremaps:client:MarkTreasureLocation', function(c
         SetBlipColour(currentLocationBlip, 1)
         SetBlipScale(currentLocationBlip, 0.5)
         BeginTextCommandSetBlipName('STRING')
-        AddTextComponentString(Config.BlipName)
+        AddTextComponentString(config.BlipName)
         EndTextCommandSetBlipName(currentLocationBlip)
         hasDugAtLocation = false
 
@@ -65,8 +67,8 @@ RegisterNetEvent('possible-treasuremaps:client:MarkTreasureLocation', function(c
             title = locale('x_marks_the_spot_title'),
             description = locale('x_marks_the_spot_message'),
             type = 'info',
-            position = Config.NotifPosition,
-            icon = Config.NotifIcon
+            position = config.NotifPosition,
+            icon = config.NotifIcon
         }
     end
 end)
@@ -84,17 +86,17 @@ RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
     local playerPed = PlayerPedId()
     local coords = GetEntityCoords(playerPed)
     if IsPlayerInsideAssignedLocation() and not hasDugAtLocation then
-        if Config.Emotes == 'rpemotes' then
+        if config.Emotes == 'rpemotes' then
             exports["rpemotes"]:EmoteCommandStart("dig")
         else 
             exports.scully_emotemenu:playEmoteByCommand('dig')
         end
         if lib.progressCircle({
             label = locale('treasure_digging'),
-            duration = Config.DigDuration,
+            duration = config.DigDuration,
             useWhileDead = false,
             canCancel = true,
-            position = Config.ProgressPosition,
+            position = config.ProgressPosition,
             disable = {
                 move = false,
                 car = false,
@@ -102,7 +104,7 @@ RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
                 combat = true
             }
             }) then
-            if Config.Emotes == 'rpemotes' then
+            if config.Emotes == 'rpemotes' then
                 exports["rpemotes"]:EmoteCancel(forceCancel)
             else
                 exports.scully_emotemenu:cancelEmote()
@@ -133,16 +135,16 @@ RegisterNetEvent('possible-treasuremaps:client:UseDigItem', function()
             title = locale('already_dug_notification_title'),
             description = locale('already_dug_notification_message'),
             type = 'error',
-            position = Config.NotifPosition,
-            icon = Config.NotifIcon
+            position = config.NotifPosition,
+            icon = config.NotifIcon
         }
     else
         lib.notify {
             title = locale('keep_searching_notification_title'),
             description = locale('keep_searching_notification_message'),
             type = 'error',
-            position = Config.NotifPosition,
-            icon = Config.NotifIcon
+            position = config.NotifPosition,
+            icon = config.NotifIcon
         }
     end
 end)

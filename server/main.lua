@@ -1,11 +1,12 @@
+local config = require('shared.config')
 local ox_inventory = exports.ox_inventory
 local QBCore = exports['qb-core']:GetCoreObject()
 
-QBCore.Functions.CreateUseableItem(Config.TreasureMapItem, function(source)
+QBCore.Functions.CreateUseableItem(config.TreasureMapItem, function(source)
     TriggerClientEvent('possible-treasuremaps:client:UseTreasureItem', source)
 end)
 
-QBCore.Functions.CreateUseableItem(Config.DigItem, function(source)
+QBCore.Functions.CreateUseableItem(config.DigItem, function(source)
     TriggerClientEvent('possible-treasuremaps:client:UseDigItem', source)
 end)
 
@@ -18,19 +19,19 @@ RegisterNetEvent('possible-treasuremaps:server:UseTreasureItem', function()
         return
     end
 
-    local success = ox_inventory:RemoveItem(src, Config.TreasureMapItem, 1)
+    local success = ox_inventory:RemoveItem(src, config.TreasureMapItem, 1)
 
     if success then
         local locationNames = {}
-        for locationName, _ in pairs(Config.TreasureLocations) do
+        for locationName, _ in pairs(config.TreasureLocations) do
             table.insert(locationNames, locationName)
         end
         
         local randomIndex = math.random(1, #locationNames)
         local randomLocationName = locationNames[randomIndex]
-        local coords = Config.TreasureLocations[randomLocationName].coords
+        local coords = config.TreasureLocations[randomLocationName].coords
 
-        if Config.Debug then
+        if config.Debug then
             print("Selected location coordinates:", coords)
         end 
     
@@ -47,9 +48,9 @@ RegisterNetEvent('possible-treasuremaps:server:GiveDigReward', function(lootTabl
     local lootTable
 
     if lootTableType == "Common" then
-        lootTable = Config.CommonLootTables
+        lootTable = config.CommonLootTables
     else
-        lootTable = Config.RareLootTables
+        lootTable = config.RareLootTables
     end
 
     local lootTableNames = {}
