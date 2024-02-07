@@ -35,8 +35,8 @@
 ## Dependencies:
 - ox_inventory
 - ox_lib
-- rpemotes
-- QBOX/ QBCore
+- rpemotes or scully_emotemenu
+- QBOX, QBCore or ESX
 
 ## Support:
 
